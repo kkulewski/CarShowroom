@@ -9,7 +9,7 @@ namespace CarShowroom.Models
 	{
 		public int PositionId { get; set; }
 		[DisplayName("Tytuł")]
-		[StringLength(50, MinimumLength = 2, ErrorMessage = "Maksymalnie 50 znaków"), Required(ErrorMessage = "Pole wymagane")]
+		[StringLength(50, MinimumLength = 2, ErrorMessage = "Tytuł musi mieć od 2 do 50 znaków"), Required(ErrorMessage = "Pole wymagane")]
 		public string Title { get; set; }
 		[DisplayName("Pensja")]
 		[DataType(DataType.Currency, ErrorMessage = "Wartość musi być kwotą")]

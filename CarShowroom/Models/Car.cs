@@ -9,10 +9,10 @@ namespace CarShowroom.Models
 	{
 		public int CarId { get; set; }
 		[DisplayName("Marka")]
-		[StringLength(50, MinimumLength = 2, ErrorMessage = "Maksymalnie 50 znaków"), Required(ErrorMessage = "Pole wymagane")]
+		[StringLength(50, MinimumLength = 2, ErrorMessage = "Marka musi mieć od 2 do 50 znaków"), Required(ErrorMessage = "Pole wymagane")]
 		public string Brand { get; set; }
 		[DisplayName("Model")]
-		[StringLength(50, MinimumLength = 2, ErrorMessage = "Maksymalnie 50 znaków"), Required(ErrorMessage = "Pole wymagane")]
+		[StringLength(50, MinimumLength = 2, ErrorMessage = "Model musi mieć od 2 do 50 znaków"), Required(ErrorMessage = "Pole wymagane")]
 		public string Model { get; set; }
 		[DisplayName("Cena")]
 		[DataType(DataType.Currency, ErrorMessage = "Wartość musi być kwotą")]
