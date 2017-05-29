@@ -77,5 +77,5 @@ _[Ss]cripts
 #####################
 # SQL Server config #
 #####################
-CarShowroom/Web.config
-Web.config
+# CarShowroom/Web.config
+# Web.config
