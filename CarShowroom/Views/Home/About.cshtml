@@ -1,7 +1,30 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿@model IEnumerable<CarShowroom.ViewModels.PurchaseDateGroup>
 
-<p>Use this area to provide additional information.</p>
+@{
+    ViewBag.Title = "Statystyka sprzedaży";
+}
+
+<h2>Statystyka sprzedaży</h2>
+
+<table width="300">
+    <tr>
+        <th>
+            Data
+        </th>
+        <th>
+            Ilość sprzedaży
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionDate)
+            </td>
+            <td>
+                @item.PurchaseCount
+            </td>
+        </tr>
+    }
+</table>
