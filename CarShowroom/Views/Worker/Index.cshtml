@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<CarShowroom.Models.Worker>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista";
 }
 
-<h2>Index</h2>
+<h2>Lista</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Dodaj", "Create")
 </p>
 <table class="table">
     <tr>
@@ -59,9 +59,9 @@
             @Html.DisplayFor(modelItem => item.StreetNumber)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.WorkerId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.WorkerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.WorkerId })
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.WorkerId }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.WorkerId }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.WorkerId })
         </td>
     </tr>
 }
