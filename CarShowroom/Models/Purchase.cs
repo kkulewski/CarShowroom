@@ -14,6 +14,7 @@ namespace CarShowroom.Models
 		public int WorkerId { get; set; }
 		[DisplayName("Samochód")]
 		public int CarId { get; set; }
+		[DisplayFormat(DataFormatString = "{0:dd/MM/yyy}", ApplyFormatInEditMode = true)]
 		[DisplayName("Data")]
 		[DataType(DataType.Date, ErrorMessage = "Wartość musi być datą")]
 		public DateTime TransactionDate { get; set; }
