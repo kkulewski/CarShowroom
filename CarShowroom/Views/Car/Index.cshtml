@@ -12,13 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Brand)
+            @Html.ActionLink("Marka", "Index", new { sort = "brand" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Model)
+            @Html.ActionLink("Model", "Index", new { sort = "model" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.ActionLink("Cena", "Index", new { sort = "price" })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IsNew)
