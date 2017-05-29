@@ -1,25 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using CarShowroom.DAL;
 using CarShowroom.Models;
+using PagedList;
 
 namespace CarShowroom.Controllers
 {
-    public class CarController : Controller
+	public class CarController : Controller
     {
         private CarShowroomContext db = new CarShowroomContext();
 
         // GET: Car
-		public ActionResult Index(string sort)
+		public ViewResult Index(string sort, string filter, string search, int? page)
 		{
+			ViewBag.CurrentSort = sort;
+
+			if (search != null)
+			{
+				page = 1;
+			}
+			else
+			{
+				search = filter;
+			}
+
+			ViewBag.CurrentFilter = search;
+
 			var cars = from c in db.Cars
 						   select c;
+
+			if (!string.IsNullOrEmpty(search))
+			{
+				cars = cars.Where(s => s.Model.Contains(search)
+									   || s.Brand.Contains(search));
+			}
+
 			switch (sort)
 			{
 				case "brand":
@@ -32,9 +49,12 @@ namespace CarShowroom.Controllers
 					cars = cars.OrderBy(c => c.Price);
 					break;
 				default:
+					cars = cars.OrderBy(c => c.CarId);
 					break;
 			}
-			return View(cars.ToList());
+			int pageSize = 3;
+			int pageNumber = (page ?? 1);
+			return View(cars.ToPagedList(pageNumber, pageSize));
 		}
 
 		// GET: Car/Details/5
