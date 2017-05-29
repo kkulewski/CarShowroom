@@ -4,6 +4,7 @@ using System.Net;
 using System.Web.Mvc;
 using CarShowroom.DAL;
 using CarShowroom.Models;
+using PagedList;
 
 namespace CarShowroom.Controllers
 {
@@ -12,10 +13,30 @@ namespace CarShowroom.Controllers
         private CarShowroomContext db = new CarShowroomContext();
 
         // GET: Client
-		public ActionResult Index(string sort)
+		public ViewResult Index(string sort, string filter, string search, int? page)
 		{
+			ViewBag.CurrentSort = sort;
+
+			if(search != null)
+			{
+				page = 1;
+			}
+			else
+			{
+				search = filter;
+			}
+
+			ViewBag.CurrentFilter = search;
+
 			var clients = from c in db.Clients
 					   select c;
+
+			if (!string.IsNullOrEmpty(search))
+			{
+				clients = clients.Where(s => s.LastName.Contains(search)
+									   || s.FirstName.Contains(search));
+			}
+
 			switch (sort)
 			{
 				case "firstname":
@@ -31,9 +52,13 @@ namespace CarShowroom.Controllers
 					clients = clients.OrderBy(c => c.City);
 					break;
 				default:
+					clients = clients.OrderBy(c => c.ClientId);
 					break;
 			}
-			return View(clients.ToList());
+
+			int pageSize = 3;
+			int pageNumber = (page ?? 1);
+			return View(clients.ToPagedList(pageNumber, pageSize));
 		}
 
 		// GET: Client/Details/5

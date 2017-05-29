@@ -1,33 +1,45 @@
-﻿@model IEnumerable<CarShowroom.Models.Client>
+﻿@model PagedList.IPagedList<CarShowroom.Models.Client>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 
 @{
-    ViewBag.Title = "Lista";
+    ViewBag.Title = "Klienci";
 }
 
-<h2>Lista</h2>
+<h2>Klienci</h2>
 
 <p>
     @Html.ActionLink("Dodaj", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "Client", FormMethod.Get))
+{
+    <p>
+        Imię/nazwisko: @Html.TextBox("search")
+        <input type="submit" value="Szukaj" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("Nazwisko", "Index", new { sort = "lastname" })
+            @Html.ActionLink("Nazwisko", "Index", new { sort = "lastname", filter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.ActionLink("Imię", "Index", new { sort = "firstname" })
+            @Html.ActionLink("Imię", "Index", new { sort = "firstname", filter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.ActionLink("CNUM", "Index", new { sort = "cnum" })
+            @Html.ActionLink("CNUM", "Index", new { sort = "cnum", filter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.ActionLink("Miasto", "Index", new { sort = "city" })
+            @Html.ActionLink("Miasto", "Index", new { sort = "city", filter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Street)
+            Ulica
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StreetNumber)
+            Numer
         </th>
         <th></th>
     </tr>
@@ -61,3 +73,5 @@
 }
 
 </table>
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sort = ViewBag.CurrentSort, filter = ViewBag.CurrentFilter }))
