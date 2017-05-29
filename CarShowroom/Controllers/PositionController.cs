@@ -16,13 +16,26 @@ namespace CarShowroom.Controllers
         private CarShowroomContext db = new CarShowroomContext();
 
         // GET: Position
-        public ActionResult Index()
-        {
-            return View(db.Positions.ToList());
-        }
+		public ActionResult Index(string sort)
+		{
+			var positions = from c in db.Positions
+						  select c;
+			switch (sort)
+			{
+				case "title":
+					positions = positions.OrderBy(p => p.Title);
+					break;
+				case "salary":
+					positions = positions.OrderBy(p => p.Salary);
+					break;
+				default:
+					break;
+			}
+			return View(positions.ToList());
+		}
 
-        // GET: Position/Details/5
-        public ActionResult Details(int? id)
+		// GET: Position/Details/5
+		public ActionResult Details(int? id)
         {
             if (id == null)
             {

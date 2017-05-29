@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.ActionLink("Tytuł", "Index", new { sort = "title" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Salary)
+            @Html.ActionLink("Pensja", "Index", new { sort = "salary" })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IsFullTime)
