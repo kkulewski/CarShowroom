@@ -1,24 +1,24 @@
 ﻿@model IEnumerable<CarShowroom.Models.Purchase>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista";
 }
 
-<h2>Index</h2>
+<h2>Lista</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Dodaj", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Car.Brand)
+            @Html.DisplayNameFor(model => model.Car)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Client.LastName)
+            @Html.DisplayNameFor(model => model.Client)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Worker.LastName)
+            @Html.DisplayNameFor(model => model.Worker)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TransactionDate)
@@ -30,20 +30,23 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Car.Brand)
+            @Html.DisplayFor(modelItem => item.Car.Model)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Client.FirstName)
             @Html.DisplayFor(modelItem => item.Client.LastName)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Worker.FirstName)
             @Html.DisplayFor(modelItem => item.Worker.LastName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TransactionDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PurchaseId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PurchaseId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PurchaseId })
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.PurchaseId }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.PurchaseId }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.PurchaseId })
         </td>
     </tr>
 }
