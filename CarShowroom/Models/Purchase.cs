@@ -1,16 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace CarShowroom.Models
 {
+	[DisplayName("Sprzedaż")]
 	public class Purchase
 	{
 		public int PurchaseId { get; set; }
+		[DisplayName("Klient")]
 		public int ClientId { get; set; }
+		[DisplayName("Pracownik")]
 		public int WorkerId { get; set; }
+		[DisplayName("Samochód")]
 		public int CarId { get; set; }
+		[DisplayName("Data")]
+		[DataType(DataType.Date, ErrorMessage = "Wartość musi być datą")]
 		public DateTime TransactionDate { get; set; }
 
 		public virtual Client Client { get; set; }
