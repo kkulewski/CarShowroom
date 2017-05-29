@@ -27,6 +27,14 @@ namespace CarShowroom.Models
 		[Range(1, 10000, ErrorMessage = "Numer musi być od 1 do 10000"), Required(ErrorMessage = "Pole wymagane")]
 		public int StreetNumber { get; set; }
 
+		public string FullName
+		{
+			get
+			{
+				return string.Format("{0} {1}", FirstName, LastName);
+			}
+		}
+
 		public virtual ICollection<Purchase> Purchases { get; set; }
 	}
 }
