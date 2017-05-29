@@ -29,6 +29,14 @@ namespace CarShowroom.Models
 		[DisplayName("Stanowisko")]
 		public int PositionId { get; set; }
 
+		public string FullName
+		{
+			get
+			{
+				return string.Format("{0} {1}", FirstName, LastName);
+			}
+		}
+
 		public virtual Position Position { get; set; }
 
 		public virtual ICollection<Purchase> Purchases { get; set; }
