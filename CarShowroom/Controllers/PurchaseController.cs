@@ -40,9 +40,9 @@ namespace CarShowroom.Controllers
         // GET: Purchase/Create
         public ActionResult Create()
         {
-            ViewBag.CarId = new SelectList(db.Cars, "CarId", "Brand");
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "LastName");
-            ViewBag.WorkerId = new SelectList(db.Workers, "WorkerId", "LastName");
+            ViewBag.CarId = new SelectList(db.Cars, "CarId", "BrandModel");
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FullName");
+            ViewBag.WorkerId = new SelectList(db.Workers, "WorkerId", "FullName");
             return View();
         }
 
@@ -60,9 +60,9 @@ namespace CarShowroom.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CarId = new SelectList(db.Cars, "CarId", "Brand", purchase.CarId);
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "LastName", purchase.ClientId);
-            ViewBag.WorkerId = new SelectList(db.Workers, "WorkerId", "LastName", purchase.WorkerId);
+            ViewBag.CarId = new SelectList(db.Cars, "CarId", "BrandModel", purchase.CarId);
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FullName", purchase.ClientId);
+            ViewBag.WorkerId = new SelectList(db.Workers, "WorkerId", "FullName", purchase.WorkerId);
             return View(purchase);
         }
 
@@ -78,9 +78,9 @@ namespace CarShowroom.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CarId = new SelectList(db.Cars, "CarId", "Brand", purchase.CarId);
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "LastName", purchase.ClientId);
-            ViewBag.WorkerId = new SelectList(db.Workers, "WorkerId", "LastName", purchase.WorkerId);
+            ViewBag.CarId = new SelectList(db.Cars, "CarId", "BrandModel", purchase.CarId);
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FullName", purchase.ClientId);
+            ViewBag.WorkerId = new SelectList(db.Workers, "WorkerId", "FullName", purchase.WorkerId);
             return View(purchase);
         }
 
@@ -97,9 +97,9 @@ namespace CarShowroom.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CarId = new SelectList(db.Cars, "CarId", "Brand", purchase.CarId);
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "LastName", purchase.ClientId);
-            ViewBag.WorkerId = new SelectList(db.Workers, "WorkerId", "LastName", purchase.WorkerId);
+            ViewBag.CarId = new SelectList(db.Cars, "CarId", "BrandModel", purchase.CarId);
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FullName", purchase.ClientId);
+            ViewBag.WorkerId = new SelectList(db.Workers, "WorkerId", "FullName", purchase.WorkerId);
             return View(purchase);
         }
 
