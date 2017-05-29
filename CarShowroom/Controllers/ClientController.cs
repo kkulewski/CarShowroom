@@ -12,13 +12,32 @@ namespace CarShowroom.Controllers
         private CarShowroomContext db = new CarShowroomContext();
 
         // GET: Client
-        public ActionResult Index()
-        {
-            return View(db.Clients.ToList());
-        }
+		public ActionResult Index(string sort)
+		{
+			var clients = from c in db.Clients
+					   select c;
+			switch (sort)
+			{
+				case "firstname":
+					clients = clients.OrderBy(c => c.FirstName);
+					break;
+				case "lastname":
+					clients = clients.OrderBy(c => c.LastName);
+					break;
+				case "cnum":
+					clients = clients.OrderBy(c => c.Pesel);
+					break;
+				case "city":
+					clients = clients.OrderBy(c => c.City);
+					break;
+				default:
+					break;
+			}
+			return View(clients.ToList());
+		}
 
-        // GET: Client/Details/5
-        public ActionResult Details(int? id)
+		// GET: Client/Details/5
+		public ActionResult Details(int? id)
         {
             if (id == null)
             {
