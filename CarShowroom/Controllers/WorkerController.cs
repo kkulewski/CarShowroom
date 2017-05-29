@@ -1,25 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using CarShowroom.DAL;
 using CarShowroom.Models;
+using PagedList;
 
 namespace CarShowroom.Controllers
 {
-    public class WorkerController : Controller
+	public class WorkerController : Controller
     {
         private CarShowroomContext db = new CarShowroomContext();
 
         // GET: Worker
-		public ActionResult Index(string sort)
+		public ViewResult Index(string sort, string filter, string search, int? page)
 		{
+			ViewBag.CurrentSort = sort;
+
+			if (search != null)
+			{
+				page = 1;
+			}
+			else
+			{
+				search = filter;
+			}
+
+			ViewBag.CurrentFilter = search;
+
 			var workers = from w in db.Workers
 							select w;
+
+			if (!string.IsNullOrEmpty(search))
+			{
+				workers = workers.Where(s => s.LastName.Contains(search)
+									   || s.FirstName.Contains(search));
+			}
+
 			switch (sort)
 			{
 				case "firstname":
@@ -35,9 +52,13 @@ namespace CarShowroom.Controllers
 					workers = workers.OrderBy(c => c.City);
 					break;
 				default:
+					workers = workers.OrderBy(c => c.WorkerId);
 					break;
 			}
-			return View(workers.ToList());
+
+			int pageSize = 3;
+			int pageNumber = (page ?? 1);
+			return View(workers.ToPagedList(pageNumber, pageSize));
 		}
 
 		// GET: Worker/Details/5
