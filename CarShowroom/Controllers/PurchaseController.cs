@@ -1,26 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using CarShowroom.DAL;
 using CarShowroom.Models;
+using PagedList;
 
 namespace CarShowroom.Controllers
 {
-    public class PurchaseController : Controller
+	public class PurchaseController : Controller
     {
         private CarShowroomContext db = new CarShowroomContext();
 
         // GET: Purchase
-        public ActionResult Index()
+        public ViewResult Index(string sort, string filter, string search, int? page)
         {
-            var purchases = db.Purchases.Include(p => p.Car).Include(p => p.Client).Include(p => p.Worker);
-            return View(purchases.ToList());
-        }
+			ViewBag.CurrentSort = sort;
+
+			if (search != null)
+			{
+				page = 1;
+			}
+			else
+			{
+				search = filter;
+			}
+
+			ViewBag.CurrentFilter = search;
+
+			var purchases = from c in db.Purchases
+							select c;
+
+			if (!string.IsNullOrEmpty(search))
+			{
+				purchases = purchases.Where(s => s.Car.Brand.Contains(search));
+			}
+
+			switch (sort)
+			{
+				case "car":
+					purchases = purchases.OrderBy(p => p.Car.Brand);
+					break;
+				case "client":
+					purchases = purchases.OrderBy(p => p.Client.FirstName);
+					break;
+				case "worker":
+					purchases = purchases.OrderBy(p => p.Worker.FirstName);
+					break;
+				case "date":
+					purchases = purchases.OrderBy(p => p.TransactionDate);
+					break;
+				default:
+					purchases = purchases.OrderBy(p => p.PurchaseId);
+					break;
+			}
+
+			int pageSize = 3;
+			int pageNumber = (page ?? 1);
+
+			return View(purchases.ToPagedList(pageNumber, pageSize));
+		}
 
         // GET: Purchase/Details/5
         public ActionResult Details(int? id)

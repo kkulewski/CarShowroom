@@ -1,32 +1,44 @@
-﻿@model IEnumerable<CarShowroom.Models.Purchase>
+﻿@model PagedList.IPagedList<CarShowroom.Models.Purchase>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Lista";
+    ViewBag.Title = "Sprzedaże";
 }
 
-<h2>Lista</h2>
+<h2>Sprzedaże</h2>
 
 <p>
     @Html.ActionLink("Dodaj", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "Purchase", FormMethod.Get))
+{
+    <p>
+        Marka: @Html.TextBox("search")
+        <input type="submit" value="Szukaj" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Car)
+            @Html.ActionLink("Samochód", "Index", new { sort = "car", filter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Client)
+            @Html.ActionLink("Klient", "Index", new { sort = "client", filter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Worker)
+            @Html.ActionLink("Pracownik", "Index", new { sort = "worker", filter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TransactionDate)
+            @Html.ActionLink("Data", "Index", new { sort = "date", filter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Car.Brand)
@@ -44,11 +56,13 @@
             @Html.DisplayFor(modelItem => item.TransactionDate)
         </td>
         <td>
-            @Html.ActionLink("Edytuj", "Edit", new { id=item.PurchaseId }) |
-            @Html.ActionLink("Szczegóły", "Details", new { id=item.PurchaseId }) |
-            @Html.ActionLink("Usuń", "Delete", new { id=item.PurchaseId })
+            @Html.ActionLink("Edytuj", "Edit", new { id = item.PurchaseId }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id = item.PurchaseId }) |
+            @Html.ActionLink("Usuń", "Delete", new { id = item.PurchaseId })
         </td>
     </tr>
 }
 
 </table>
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sort = ViewBag.CurrentSort, filter = ViewBag.CurrentFilter }))
