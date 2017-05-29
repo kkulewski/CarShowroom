@@ -16,14 +16,32 @@ namespace CarShowroom.Controllers
         private CarShowroomContext db = new CarShowroomContext();
 
         // GET: Worker
-        public ActionResult Index()
-        {
-            var workers = db.Workers.Include(w => w.Position);
-            return View(workers.ToList());
-        }
+		public ActionResult Index(string sort)
+		{
+			var workers = from w in db.Workers
+							select w;
+			switch (sort)
+			{
+				case "firstname":
+					workers = workers.OrderBy(c => c.FirstName);
+					break;
+				case "lastname":
+					workers = workers.OrderBy(c => c.LastName);
+					break;
+				case "cnum":
+					workers = workers.OrderBy(c => c.Pesel);
+					break;
+				case "city":
+					workers = workers.OrderBy(c => c.City);
+					break;
+				default:
+					break;
+			}
+			return View(workers.ToList());
+		}
 
-        // GET: Worker/Details/5
-        public ActionResult Details(int? id)
+		// GET: Worker/Details/5
+		public ActionResult Details(int? id)
         {
             if (id == null)
             {

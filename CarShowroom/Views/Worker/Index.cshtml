@@ -15,16 +15,16 @@
             @Html.DisplayNameFor(model => model.Position)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.ActionLink("Nazwisko", "Index", new { sort = "lastname" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.ActionLink("Imię", "Index", new { sort = "firstname" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Pesel)
+            @Html.ActionLink("CNUM", "Index", new { sort = "cnum" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.ActionLink("Miasto", "Index", new { sort = "city" })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Street)
