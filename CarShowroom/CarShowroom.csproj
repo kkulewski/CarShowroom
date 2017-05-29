@@ -149,6 +149,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="DAL\CarShowroomContext.cs" />
     <Compile Include="DAL\CarShowroomInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -203,6 +204,11 @@
     <Content Include="Views\Client\Details.cshtml" />
     <Content Include="Views\Client\Edit.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\Position\Create.cshtml" />
+    <Content Include="Views\Position\Delete.cshtml" />
+    <Content Include="Views\Position\Details.cshtml" />
+    <Content Include="Views\Position\Edit.cshtml" />
+    <Content Include="Views\Position\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
