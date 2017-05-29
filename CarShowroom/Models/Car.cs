@@ -21,6 +21,14 @@ namespace CarShowroom.Models
 		[DisplayName("Nowy")]
 		public bool IsNew { get; set; }
 
+		public string BrandModel
+		{
+			get
+			{
+				return string.Format("{0} {1}", Brand, Model);
+			}
+		}
+
 		public virtual ICollection<Purchase> Purchases { get; set; }
 	}
 }
