@@ -8,23 +8,35 @@ namespace CarShowroom.Models
 	public class Client
 	{
 		public int ClientId { get; set; }
+
 		[DisplayName("Nazwisko")]
-		[StringLength(50, MinimumLength = 2, ErrorMessage = "Nazwisko musi mieć od 2 do 50 znaków"), Required(ErrorMessage = "Pole wymagane")]
+		[Required(ErrorMessage = "Pole wymagane")]
+		[StringLength(50, MinimumLength = 2, ErrorMessage = "Nazwisko musi mieć od 2 do 50 znaków")]
 		public string LastName { get; set; }
+
 		[DisplayName("Imię")]
-		[StringLength(50, MinimumLength = 2, ErrorMessage = "Imię musi mieć od 2 do 50 znaków"), Required(ErrorMessage = "Pole wymagane")]
+		[Required(ErrorMessage = "Pole wymagane")]
+		[StringLength(50, MinimumLength = 2, ErrorMessage = "Imię musi mieć od 2 do 50 znaków")]
 		public string FirstName { get; set; }
+
 		[DisplayName("CNUM")]
-		[StringLength(11, MinimumLength = 11, ErrorMessage = "CNUM musi mieć dokładnie 11 znaków"), Required(ErrorMessage = "Pole wymagane")]
+		[Required(ErrorMessage = "Pole wymagane")]
+		[StringLength(11, MinimumLength = 11, ErrorMessage = "CNUM musi mieć dokładnie 11 znaków")]
 		public string Pesel { get; set; }
+
 		[DisplayName("Miasto")]
-		[StringLength(11, MinimumLength = 2, ErrorMessage = "Miasto musi mieć od 2 do 50 znaków"), Required(ErrorMessage = "Pole wymagane")]
+		[Required(ErrorMessage = "Pole wymagane")]
+		[StringLength(11, MinimumLength = 2, ErrorMessage = "Miasto musi mieć od 2 do 50 znaków")]
 		public string City { get; set; }
+
 		[DisplayName("Ulica")]
-		[StringLength(11, MinimumLength = 2, ErrorMessage = "Ulica musi mieć od 2 do 50 znaków"), Required(ErrorMessage = "Pole wymagane")]
+		[Required(ErrorMessage = "Pole wymagane")]
+		[StringLength(11, MinimumLength = 2, ErrorMessage = "Ulica musi mieć od 2 do 50 znaków")]
 		public string Street { get; set; }
+
 		[DisplayName("Numer")]
-		[Range(1, 10000, ErrorMessage = "Numer musi być od 1 do 10000"), Required(ErrorMessage = "Pole wymagane")]
+		[Required(ErrorMessage = "Pole wymagane")]
+		[Range(1, 10000, ErrorMessage = "Numer musi być od 1 do 10000")]
 		public int StreetNumber { get; set; }
 
 		public string FullName
