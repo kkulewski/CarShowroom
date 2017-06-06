@@ -12,11 +12,13 @@ namespace CarShowroom.Models
 		[DisplayName("Nazwisko")]
 		[Required(ErrorMessage = "Pole wymagane")]
 		[StringLength(50, MinimumLength = 2, ErrorMessage = "Nazwisko musi mieć od 2 do 50 znaków")]
+		[RegularExpression(@"^[A-ZĄĘŁŃÓŚŹŻ]{1}[a-ząćęłńóśźż]{1,49}$", ErrorMessage = "Zły format")]
 		public string LastName { get; set; }
 
 		[DisplayName("Imię")]
 		[Required(ErrorMessage = "Pole wymagane")]
 		[StringLength(50, MinimumLength = 2, ErrorMessage = "Imię musi mieć od 2 do 50 znaków")]
+		[RegularExpression(@"^[A-ZĄĘŁŃÓŚŹŻ]{1}[a-ząćęłńóśźż]{1,49}$", ErrorMessage = "Zły format")]
 		public string FirstName { get; set; }
 
 		[DisplayName("CNUM")]
@@ -27,11 +29,13 @@ namespace CarShowroom.Models
 		[DisplayName("Miasto")]
 		[Required(ErrorMessage = "Pole wymagane")]
 		[StringLength(11, MinimumLength = 2, ErrorMessage = "Miasto musi mieć od 2 do 50 znaków")]
+		[RegularExpression(@"^[A-ZĄĘŁŃÓŚŹŻ]{1}[a-ząćęłńóśźż]{1,49}$", ErrorMessage = "Zły format")]
 		public string City { get; set; }
 
 		[DisplayName("Ulica")]
 		[Required(ErrorMessage = "Pole wymagane")]
 		[StringLength(11, MinimumLength = 2, ErrorMessage = "Ulica musi mieć od 2 do 50 znaków")]
+		[RegularExpression(@"^[A-ZĄĘŁŃÓŚŹŻ]{1}[a-ząćęłńóśźż]{1,49}$", ErrorMessage = "Zły format")]
 		public string Street { get; set; }
 
 		[DisplayName("Numer")]
