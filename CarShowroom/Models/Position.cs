@@ -12,6 +12,7 @@ namespace CarShowroom.Models
 		[DisplayName("Tytuł")]
 		[Required(ErrorMessage = "Pole wymagane")]
 		[StringLength(50, MinimumLength = 2, ErrorMessage = "Tytuł musi mieć od 2 do 50 znaków")]
+		[RegularExpression(@"^[A-ZĄĘŁŃÓŚŹŻ]{1}[a-ząćęłńóśźż]{1,49}$", ErrorMessage = "Zły format")]
 		public string Title { get; set; }
 
 		[DisplayName("Pensja")]
